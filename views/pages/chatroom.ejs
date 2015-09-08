@@ -32,8 +32,9 @@
         </div>
       </header>
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Chatroom</span>
+        <span class="mdl-layout-title">Online</span>
         <nav class="mdl-navigation">
+          <div href="#" ng-repeat="user in chat.online track by $index">{{user}}</div>
         </nav>
       </div>
       <main class="mdl-layout__content">

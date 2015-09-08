@@ -15,10 +15,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('pages/index');
-});
-
-app.get('/chat', function(request, response) {
   response.render('pages/chatroom');
 });
 

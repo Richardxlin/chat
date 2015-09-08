@@ -16,7 +16,8 @@
       invalid: {
         message: false, //default values
         user: false
-      }
+      },
+      online: []
     }
 
     $scope.sendMessage = function(){
@@ -27,14 +28,25 @@
 
     function initialize(){
       socket = io();
-
-
       socket.on('chat message', function(data) {
         $scope.chat.client.push(data);
+        getActiveUser(data);
         $scope.$apply();
         chatwindow.scrollTop = chatwindow.scrollHeight;
       });
 
+      getActiveUser($scope.chat.remote.user);
+
+    }
+
+    function getActiveUser(user){
+      if(typeof user === 'string' ) {
+        $scope.chat.online.push(user)
+      } else {
+        if ($scope.chat.online.indexOf(user.user) === -1) {
+          $scope.chat.online.push(user.user);
+        }
+      }
     }
 
     function postNewChatMessage(){
