@@ -1,0 +1,88 @@
+html, body {
+ background-color: #333333
+}
+#chat-window {
+  padding: 15px;
+  color: white;
+  height: 450px;
+  border-radius: 10px;
+  overflow: auto;
+}
+#user-list {
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  max-height: 450px;
+  overflow: auto;
+}
+#query-block {
+  border-radius: 5px;
+}
+
+#comments {
+    margin-top: 50px;
+    word-wrap: break-word;
+}
+
+#user-icon {
+  margin-right: 10px;
+}
+
+.user-name {
+  vertical-align: super;
+}
+
+.commentCount {
+    display: inline-block;
+    vertical-align: baseline;
+    font-size: 10px
+}
+
+
+.commentInfo,.commentDateStamp {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    line-height: 18px;
+    width: 140px
+}
+
+.commentDateStamp {
+    font-size: 10px
+}
+
+.comment {
+    color: black;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    max-width: 620px;
+    vertical-align: top;
+    padding: 3px 10px;
+    background: #eee;
+    margin-bottom: 15px;
+    margin-left: 0
+}
+
+.comment:after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: -15px;
+    border-style: solid;
+    border-width: 10px 15px 10px 0;
+    border-color: transparent #eee;
+    display: block;
+    width: 0;
+    z-index: 1
+}
+.comment p {
+    margin: 5px 0
+}
+.comment.you {
+  background-color: rgb(3,169,244);
+}
+.comment.you:after {
+  border-color: transparent rgb(3,169,244);
+}

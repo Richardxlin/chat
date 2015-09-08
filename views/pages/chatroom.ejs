@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="chat-app" ng-controller="chatCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-blue.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Chatroom</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+            <span id="user-icon"><i class="material-icons">person</i></span>
+            <div class="mdl-textfield mdl-js-textfield" ng-class="{'is-invalid': chat.invalid.user}">
+              <input class="mdl-textfield__input" type="text"  ng-model="chat.remote.user" />
+              <label class="mdl-textfield__label" for="user">name</label>
+              <span class="mdl-textfield__error">You need a name!</span>
+            </div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Chatroom</span>
+        <nav class="mdl-navigation">
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content mdl-grid">
+          <div id="chat-window" class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+            <div ng-repeat="msg in chat.client">
+              <div id="cmt-19">
+      						<p class="commentInfo">
+                    {{msg.user}}
+                    <small class="commentDateStamp">{{msg.date | date: 'short' }}</small>
+                  </p>
+      						<div class="comment" ng-class="{'you': msg.user == chat.remote.user}">
+      							<p>{{msg.message}}</p>
+      						</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="query-block" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+          <div class="mdl-cell mdl-cell--10-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-invalid': chat.invalid.message}">
+            <input class="mdl-textfield__input" type="text" id="chat-input" ng-model="chat.remote.message" ng-enter="sendMessage()" autofocus=""/>
+            <label class="mdl-textfield__label" for="sample3">Message</label>
+            <span class="mdl-textfield__error">Say what?</span>
+          </div>
+          <button class=" mdl-button mdl-js-button mdl-button--fab mdl-button--colored" ng-click="sendMessage()">
+            <i class="material-icons">send</i>
+          </button>
+        </div>
+      </main>
+    </div>
+    <script src="js/chat.js" charset="utf-8"></script
+  </body>
+</html>
